@@ -12,7 +12,6 @@ public class CameraRotationTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            PlayerBehaviour playerMovement = other.GetComponent<PlayerBehaviour>();
             cameraController.Rotate(direction);
             direction = !direction;
         }

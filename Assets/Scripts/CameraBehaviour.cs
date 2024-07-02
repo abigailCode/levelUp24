@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public Transform[] rotationPoints; // Points to move the camera
-    public float transitionSpeed = 2f; // Speed of transition
+    public Transform[] rotationPoints;
+    public float transitionSpeed = 2f;
     private int currentRotationIndex = 0;
 
     private bool isTransitioning = false;
@@ -15,11 +15,9 @@ public class CameraBehaviour : MonoBehaviour
 
     void Update() {
         if (isTransitioning) {
-            // Move and rotate the camera towards the target rotation point
             transform.position = Vector3.Lerp(transform.position, targetRotationPoint.position, transitionSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotationPoint.rotation, transitionSpeed * Time.deltaTime);
 
-            // Check if the camera has reached the target rotation point
             if (Vector3.Distance(transform.position, targetRotationPoint.position) < 0.1f && Quaternion.Angle(transform.rotation, targetRotationPoint.rotation) < 1f) {
                 isTransitioning = false;
             }
