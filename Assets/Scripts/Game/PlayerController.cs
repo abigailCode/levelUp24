@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     [SerializeField] float _speed = 5f;
     [SerializeField] float _jumpForce = 5f;
     Rigidbody _rb;

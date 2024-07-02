@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class CameraBehaviour : MonoBehaviour
-{
+public class CameraBehaviour : MonoBehaviour {
     [SerializeField] Transform[] _rotationPoints;
     [SerializeField] float _transitionSpeed = 2f;
     int _currentRotationIndex = 0;

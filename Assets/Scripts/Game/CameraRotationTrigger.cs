@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CameraRotationTrigger : MonoBehaviour
-{
+public class CameraRotationTrigger : MonoBehaviour {
     CameraBehaviour _cameraController;
     bool _direction = true;
 
