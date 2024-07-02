@@ -10,6 +10,7 @@ public class CameraBehaviour : MonoBehaviour {
 
     void Start() {
         _targetRotationPoint = _rotationPoints[_currentRotationIndex];
+        Rotate(true);
     }
 
     void Update() {
