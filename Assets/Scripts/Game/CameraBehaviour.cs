@@ -3,13 +3,12 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour {
     [SerializeField] Transform[] _rotationPoints;
     [SerializeField] float _transitionSpeed = 2f;
-    int _currentRotationIndex = 0;
+    int _currentRotationIndex = -1;
 
     bool _isTransitioning = false;
     Transform _targetRotationPoint;
 
     void Start() {
-        _targetRotationPoint = _rotationPoints[_currentRotationIndex];
         Rotate(true);
     }
 
