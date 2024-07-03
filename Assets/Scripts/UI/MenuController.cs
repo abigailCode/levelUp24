@@ -2,17 +2,32 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour {
     public MenuController menuController;
+    public GameObject credits;
+    public GameObject settings;
 
     public void PerformAction(string action, string scene = "") {
-        if (!GameManager.instance.isActive)
-            return;
+        //if (!GameManager.instance.isActive)
+        //    return;
 
         switch (action) {
-            case "StartGame":
-                SCManager.instance.LoadScene("GameScene");
+            case "GoToIntro":
+                SCManager.instance.LoadScene("Intro");
                 break;
-            case "GoToSettings":
-                SCManager.instance.LoadScene("GeneralSettingsScene");
+            case "StartGame":
+                SCManager.instance.LoadScene("Level1");
+                break;
+            case "ShowSettings":
+                // SCManager.instance.LoadScene("GeneralSettingsScene");
+                settings.SetActive(true);
+                break;
+            case "HideSettings":
+                settings.SetActive(false);
+                break;
+            case "ShowCredits":
+                credits.SetActive(true);
+                break;
+            case "HideCredits":
+                credits.SetActive(false);
                 break;
             case "GoToRanking":
                 SCManager.instance.LoadScene("RankingScene");
@@ -33,9 +48,17 @@ public class MenuController : MonoBehaviour {
         }
     }
 
+    public void GoToIntro() => menuController.PerformAction("GoToIntro");
+
     public void StartGame() => menuController.PerformAction("StartGame");
 
-    public void GoToSettings() => menuController.PerformAction("GoToSettings");
+    public void ShowSettings() => menuController.PerformAction("ShowSettings");
+
+    public void HideSettings() => menuController.PerformAction("HideSettings");
+
+    public void ShowCredits() => menuController.PerformAction("ShowCredits");
+
+    public void HideCredits() => menuController.PerformAction("HideCredits");
 
     public void GoToRanking() => menuController.PerformAction("GoToRanking");
 
