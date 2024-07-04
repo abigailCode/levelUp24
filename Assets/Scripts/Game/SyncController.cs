@@ -14,25 +14,27 @@ public class SyncController : MonoBehaviour {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _renderer = GetComponent<Renderer>();
         _groupController = GetComponent<GroupController>();
-        _groupController.groupMembers.Add(gameObject);
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) {
             HandlePlayerCollision(collision.gameObject);
-        else if (collision.gameObject.CompareTag("Enemy"))
+        } else if (collision.gameObject.CompareTag("Enemy")) {
             HandleEnemyCollision(collision.gameObject);
+        }
     }
 
     void HandlePlayerCollision(GameObject player) {
         GroupController playerGroup = player.GetComponent<GroupController>();
 
-        if (_controller.enabled) return; // Already a player
-        PlayerController playerController = player.GetComponent<PlayerController>();
+        if (_controller.enabled) {
+            // Already a player
+            return;
+        }
 
         // Convert this enemy to player
         _controller.enabled = true;
-        _controller.SetAttributes(playerController.GetSpeed(), playerController.GetJumpForce());
+        _controller.SetAttributes(player.GetComponent<PlayerController>().GetSpeed(), player.GetComponent<PlayerController>().GetJumpForce());
         _enemyController.enabled = false;
         _navMeshAgent.enabled = false;
         _renderer.material.color = Color.red;
@@ -40,7 +42,10 @@ public class SyncController : MonoBehaviour {
 
         // Add this enemy to the player's group
         playerGroup.AddToGroup(gameObject);
-        SyncGroups(playerGroup);
+        _groupController.groupMembers = playerGroup.groupMembers; // Sync group members
+
+        // Update GameManager
+        GameManager.Instance.ChangePlayerCount(1);
     }
 
     void HandleEnemyCollision(GameObject enemy) {
@@ -51,7 +56,10 @@ public class SyncController : MonoBehaviour {
             foreach (GameObject member in enemyGroup.groupMembers) {
                 _groupController.AddToGroup(member);
             }
-            SyncGroups(_groupController);
+            enemyGroup.groupMembers.Clear();
+
+            // Set the first member as the leader
+            SetGroupLeader(_groupController.groupMembers[0]);
         } else {
             // Compare group sizes
             if (_groupController.GetGroupSize() >= enemyGroup.GetGroupSize()) {
@@ -83,21 +91,19 @@ public class SyncController : MonoBehaviour {
 
             // Set the first member as the leader
             SetGroupLeader(_groupController.groupMembers[0]);
+
+            // Update GameManager
+            GameManager.Instance.ChangePlayerCount(-1);
         }
     }
 
     void SetGroupLeader(GameObject leader) {
         foreach (GameObject member in _groupController.groupMembers) {
             EnemyController enemyController = member.GetComponent<EnemyController>();
-            enemyController.SetLeader(member == leader);
-        }
-    }
-
-    void SyncGroups(GroupController group) {
-        foreach (GameObject member in group.groupMembers) {
-            SyncController syncController = member.GetComponent<SyncController>();
-            if (syncController != this) {
-                syncController._groupController.groupMembers = group.groupMembers;
+            if (member == leader) {
+                enemyController.SetLeader(true);
+            } else {
+                enemyController.SetLeader(false);
             }
         }
     }

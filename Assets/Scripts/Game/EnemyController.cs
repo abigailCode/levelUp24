@@ -40,18 +40,15 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    public void StartGroupPatrol(List<GameObject> groupMembers) {
-        _groupMembers = groupMembers;
+    public void StartGroupPatrol() {
         if (isLeader) StartCoroutine(Patrol());
     }
 
-    public void StartGroupAlert(List<GameObject> groupMembers) {
-        _groupMembers = groupMembers;
+    public void StartGroupAlert() {
         if (isLeader) StartCoroutine(Alert());
     }
 
-    public void StartGroupCrazy(List<GameObject> groupMembers) {
-        _groupMembers = groupMembers;
+    public void StartGroupCrazy() {
         if (isLeader) StartCoroutine(GoCrazy());
     }
 
@@ -113,7 +110,7 @@ public class EnemyController : MonoBehaviour {
 
     public void SetLeader(bool isLeader) {
         this.isLeader = isLeader;
-        if (isLeader) StartGroupPatrol(_groupMembers);
+        if (isLeader) StartGroupPatrol();
     }
 
     void FollowLeader() {
