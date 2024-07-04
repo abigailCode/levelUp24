@@ -4,15 +4,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float _speed = 5f;
     [SerializeField] float _jumpForce = 5f;
     Rigidbody _rb;
-    private bool _isGrounded;
-    Vector3 _moveDirection;
+    bool _isGrounded;
 
     void Start() {
         _rb = GetComponent<Rigidbody>();
     }
 
     void Update() {
-        if (!GameManager.instance.isActive) return;
+        if (!GameManager.Instance.isActive) return;
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");

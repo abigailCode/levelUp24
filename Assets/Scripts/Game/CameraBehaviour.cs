@@ -13,7 +13,7 @@ public class CameraBehaviour : MonoBehaviour {
     }
 
     void Update() {
-        if (!GameManager.instance.isActive) return;
+        if (!GameManager.Instance.isActive) return;
 
         if (_isTransitioning) {
             transform.position = Vector3.Lerp(transform.position, _targetRotationPoint.position, _transitionSpeed * Time.deltaTime);
