@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SCManager : MonoBehaviour {
-    public static SCManager instance;
+    public static SCManager Instance;
 
     void Awake() {
-        if (instance == null) {
-            instance = this;
+        if (Instance == null) {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         } else Destroy(gameObject);
 

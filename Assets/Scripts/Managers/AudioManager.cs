@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class AudioManager : MonoBehaviour {
-    public static AudioManager instance;
+    public static AudioManager Instance;
     [SerializeField] AudioSource _sfxSource;
     [SerializeField] AudioSource _musicSource;
 
@@ -10,8 +10,8 @@ public class AudioManager : MonoBehaviour {
     Dictionary<string, AudioClip> _musicClips = new();
 
     void Awake() {
-        if (instance == null) {
-            instance = this;
+        if (Instance == null) {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadSFXClips();
             LoadMusicClips();
