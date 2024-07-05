@@ -11,10 +11,11 @@ public class MenuController : MonoBehaviour {
 
         switch (action) {
             case "GoToIntro":
-                SCManager.instance.LoadScene("Intro");
+                SCManager.Instance.LoadScene("Intro");
                 break;
             case "StartGame":
-                SCManager.instance.LoadScene("Level1");
+                GameManager.Instance.ResumeGame();
+                SCManager.Instance.LoadScene("Level1");
                 break;
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");
@@ -30,13 +31,13 @@ public class MenuController : MonoBehaviour {
                 credits.SetActive(false);
                 break;
             case "GoToRanking":
-                SCManager.instance.LoadScene("RankingScene");
+                SCManager.Instance.LoadScene("RankingScene");
                 break;
             case "GoToMenu":
-                SCManager.instance.LoadScene("MenuScene");
+                SCManager.Instance.LoadScene("MenuScene");
                 break;
             case "LoadScene":
-                SCManager.instance.LoadScene(scene);
+                SCManager.Instance.LoadScene(scene);
                 break;
             case "ExitGame":
 #if UNITY_EDITOR

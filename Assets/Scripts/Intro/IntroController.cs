@@ -15,7 +15,7 @@ public class IntroController : MonoBehaviour
 
     void Start()
     {
-       // AudioManager.instance.PlayMusic("intro");
+       // AudioManager.Instance.PlayMusic("intro");
         texts[index].SetActive(true);
         prevButton.SetActive(false);
 
@@ -73,6 +73,6 @@ public class IntroController : MonoBehaviour
 
     public void SkipIntro()
     {
-        SCManager.instance.LoadScene("Level1");
+        SCManager.Instance.LoadScene("Level1");
     }
 }

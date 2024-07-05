@@ -5,8 +5,9 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    public int totalBalls = 4;
-    public bool isActive = true;
+    public int totalBalls = 0;
+    public float status = 0;
+    public bool isActive = false;
     private int _playerCount = 1; // Start with 1 player
     private int _enemyCount;
 
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour {
         _playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         _enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         totalBalls = _playerCount + _enemyCount;
-        UpdateStatus();
+        if (isActive) UpdateStatus();
     }
 
     public void GameOver() {
@@ -41,21 +42,25 @@ public class GameManager : MonoBehaviour {
     }
 
     public void UpdateStatus() {
-        int totalBalls = _playerCount + _enemyCount;
-        float status = (float)_playerCount / totalBalls * 100;
+        totalBalls = _playerCount + _enemyCount;
+        status = (float)_playerCount / totalBalls * 100;
 
-        if (status >= 70) {
+        Debug.Log(totalBalls);
+        Debug.Log(_playerCount);
+        Debug.Log(_enemyCount);
+        Debug.Log(status);
+        if (status >= 75) {
             StopCoroutine(ChangeSaturationCoroutine(2f));
             StartCoroutine(DestroyWorld());
         }
         if (status >= 60) {
-            StartCoroutine(ChangeSaturationCoroutine(2f, -10f));
+            StartCoroutine(ChangeSaturationCoroutine(2f, -70f));
             StartGroupCrazy();
-        } else if (status >= 40) {
+        } else if (status >= 50) {
             StartCoroutine(ChangeSaturationCoroutine(2f, -40f));
             StartGroupAlert();
-        } else if (status >= 20) {
-            StartCoroutine(ChangeSaturationCoroutine(2f, -70f));
+        } else if (status >= 30) {
+            StartCoroutine(ChangeSaturationCoroutine(2f, -10f));
             StartGroupPatrol();
         }
     }

@@ -26,7 +26,6 @@ public class CameraBehaviour : MonoBehaviour {
     }
 
     public void Rotate(bool movingForward) {
-        Debug.Log("Rotate" + _currentRotationIndex);
         if (movingForward) _currentRotationIndex = (_currentRotationIndex + 1) % _rotationPoints.Length;
         else _currentRotationIndex = (_currentRotationIndex - 1 + _rotationPoints.Length) % _rotationPoints.Length;
 
