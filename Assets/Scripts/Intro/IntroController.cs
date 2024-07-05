@@ -6,6 +6,7 @@ public class IntroController : MonoBehaviour {
     [SerializeField] GameObject[] texts;
     CameraBehaviour _cameraController;
     bool _direction = false;
+    [SerializeField] GameObject playerSection2;
 
 
     public GameObject nextButton;
@@ -30,6 +31,7 @@ public class IntroController : MonoBehaviour {
         if (index > 0) prevButton.SetActive(true);
 
         ToggleButtons(index);
+        TogglePlayerSection2Animator(index);
     }
 
     public void ShowPrev() {
@@ -39,7 +41,7 @@ public class IntroController : MonoBehaviour {
         texts[--index].SetActive(true);
 
         ToggleButtons(index);
-
+        TogglePlayerSection2Animator(index);
     }
 
     public void ToggleButtons(int index) {
@@ -59,5 +61,17 @@ public class IntroController : MonoBehaviour {
         }
 
         _cameraController.Rotate(_direction);
+    }
+
+    public void TogglePlayerSection2Animator(int i)
+    {
+        if(i== 1)
+        {
+            playerSection2.SetActive(true);
+        }
+        else
+        {
+            playerSection2.SetActive(false);
+        }
     }
 }
