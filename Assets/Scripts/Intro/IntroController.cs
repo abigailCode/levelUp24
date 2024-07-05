@@ -7,6 +7,7 @@ public class IntroController : MonoBehaviour {
     CameraBehaviour _cameraController;
     bool _direction = false;
     [SerializeField] GameObject playerSection2;
+    [SerializeField] GameObject section3;
 
 
     public GameObject nextButton;
@@ -45,6 +46,7 @@ public class IntroController : MonoBehaviour {
     void Toggle(int index) {
         ToggleButtons(index);
         TogglePlayerSection2Animator(index);
+        ToggleSection3Animator(index);
         ToggleSaturation(index);
     }
 
@@ -67,20 +69,17 @@ public class IntroController : MonoBehaviour {
         _cameraController.Rotate(_direction);
     }
 
-    public void TogglePlayerSection2Animator(int i)
-    {
-        if(i== 1)
-        {
-            playerSection2.SetActive(true);
-        }
-        else
-        {
-            playerSection2.SetActive(false);
-        }
+    public void TogglePlayerSection2Animator(int i) {
+        playerSection2.SetActive(i == 1);
     }
 
-    public void ToggleSaturation(int index)
-    {
+    public void ToggleSection3Animator(int i) {
+        Debug.Log("i: " + i);
+        section3.SetActive(i == 2);
+        section3.transform.Find("Player").GetComponent<Animator>().Play("playerIntroSection3");
+    }
+
+    public void ToggleSaturation(int index) {
         StopCoroutine(GameManager.Instance.ChangeSaturationCoroutine(1));
         if (index == 3) StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
         else StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5, 5));
