@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour {
         GameOver();
     }
 
-    private IEnumerator ChangeSaturationCoroutine(float duration, float endSaturation = -100f) {
+    public IEnumerator ChangeSaturationCoroutine(float duration, float endSaturation = -100f) {
         PostProcessVolume postProcessingVolume = FindObjectOfType<PostProcessVolume>();
         postProcessingVolume.profile.TryGetSettings(out ColorGrading colorAdjustments);
         float startSaturation = colorAdjustments.saturation.value;

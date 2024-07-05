@@ -30,8 +30,7 @@ public class IntroController : MonoBehaviour {
 
         if (index > 0) prevButton.SetActive(true);
 
-        ToggleButtons(index);
-        TogglePlayerSection2Animator(index);
+        Toggle(index);
     }
 
     public void ShowPrev() {
@@ -40,8 +39,13 @@ public class IntroController : MonoBehaviour {
         if (index == 0) index = 3;
         texts[--index].SetActive(true);
 
+        Toggle(index);
+    }
+
+    void Toggle(int index) {
         ToggleButtons(index);
         TogglePlayerSection2Animator(index);
+        ToggleSaturation(index);
     }
 
     public void ToggleButtons(int index) {
@@ -73,5 +77,12 @@ public class IntroController : MonoBehaviour {
         {
             playerSection2.SetActive(false);
         }
+    }
+
+    public void ToggleSaturation(int index)
+    {
+        StopCoroutine(GameManager.Instance.ChangeSaturationCoroutine(1));
+        if (index == 3) StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
+        else StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5, 5));
     }
 }
