@@ -209,11 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bf971440cd944e91131f0836a6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  _enemyController: {fileID: 0}
-  _navMeshAgent: {fileID: 0}
-  _renderer: {fileID: 0}
-  _groupController: {fileID: 0}
 --- !u!114 &69176883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,15 +452,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 23cf049846ff0c2498088265bd2c022e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.590179
+      value: 5.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23cf049846ff0c2498088265bd2c022e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17686361
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23cf049846ff0c2498088265bd2c022e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.3603134
+      value: 3.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 23cf049846ff0c2498088265bd2c022e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -606,11 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bf971440cd944e91131f0836a6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  _enemyController: {fileID: 0}
-  _navMeshAgent: {fileID: 0}
-  _renderer: {fileID: 0}
-  _groupController: {fileID: 0}
 --- !u!114 &204136822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,11 +1021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bf971440cd944e91131f0836a6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  _enemyController: {fileID: 0}
-  _navMeshAgent: {fileID: 0}
-  _renderer: {fileID: 0}
-  _groupController: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,11 +1152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bf971440cd944e91131f0836a6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  _enemyController: {fileID: 0}
-  _navMeshAgent: {fileID: 0}
-  _renderer: {fileID: 0}
-  _groupController: {fileID: 0}
 --- !u!114 &785927256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,11 +1401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217bf971440cd944e91131f0836a6882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  _enemyController: {fileID: 0}
-  _navMeshAgent: {fileID: 0}
-  _renderer: {fileID: 0}
-  _groupController: {fileID: 0}
 --- !u!114 &934564284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2903,7 +2878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba159e294a4213340b5d7c42705a7900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followersCount: 0
+  totalBalls: 4
   isActive: 1
 --- !u!4 &1830748464
 Transform:
