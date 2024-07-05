@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
     public MenuController menuController;
@@ -14,8 +15,8 @@ public class MenuController : MonoBehaviour {
                 SCManager.Instance.LoadScene("Intro");
                 break;
             case "StartGame":
-                GameManager.Instance.ResumeGame();
                 SCManager.Instance.LoadScene("Level1");
+                GameManager.Instance.UpdateCounts();
                 break;
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");
