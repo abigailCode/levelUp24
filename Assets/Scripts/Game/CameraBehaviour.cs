@@ -10,6 +10,7 @@ public class CameraBehaviour : MonoBehaviour {
 
     void Start() {
         Rotate(true);
+        GameManager.Instance.ResumeGame();
     }
 
     void Update() {

@@ -16,7 +16,6 @@ public class MenuController : MonoBehaviour {
                 break;
             case "StartGame":
                 SCManager.Instance.LoadScene("Level1");
-                GameManager.Instance.UpdateCounts();
                 break;
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
         _rb = GetComponent<Rigidbody>();
-        GameManager.Instance.ResumeGame();
     }
 
     void Update() {

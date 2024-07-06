@@ -5,20 +5,21 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
     [SerializeField] float _playerDetectionDistance, _playerAttackDistance;
-    private Vector3 _destination;
-    private Transform _player;
-    private List<GameObject> _groupMembers;
-    private bool isLeader = false;
+    Vector3 _destination;
+    Transform _player;
+    List<GameObject> _groupMembers;
+    bool _isLeader = false;
 
     void Start() {
         transform.Rotate(-90, 0, 0); // Fix rotation
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _groupMembers = new List<GameObject> { gameObject };
+        _isLeader = true;
     }
 
     void Update() {
         if (!GameManager.Instance.isActive) StopAllCoroutines();
-        if (!isLeader && _groupMembers.Count > 1) FollowLeader();
+        if (!_isLeader && _groupMembers.Count > 1) FollowLeader();
     }
 
     void SetRandomDestination() {
@@ -30,10 +31,10 @@ public class EnemyController : MonoBehaviour {
     }
 
     void SetDestinationForGroup(Vector3 destination) {
-        if (isLeader) {
+        if (_isLeader && _groupMembers.Count > 0) {
             foreach (GameObject member in _groupMembers) {
                 NavMeshAgent agent = member.GetComponent<NavMeshAgent>();
-                if (agent != null) {
+                if (agent != null && agent.enabled) {
                     agent.SetDestination(destination);
                     //member.GetComponent<Animator>().SetFloat("velocity", 2);
                 }
@@ -42,15 +43,15 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void StartGroupPatrol() {
-        if (isLeader) StartCoroutine(Patrol());
+        if (_isLeader) StartCoroutine(Patrol());
     }
 
     public void StartGroupAlert() {
-        if (isLeader) StartCoroutine(Alert());
+        if (_isLeader) StartCoroutine(Alert());
     }
 
     public void StartGroupCrazy() {
-        if (isLeader) StartCoroutine(GoCrazy());
+        if (_isLeader) StartCoroutine(GoCrazy());
     }
 
     IEnumerator Patrol() {
@@ -110,7 +111,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void SetLeader(bool isLeader) {
-        this.isLeader = isLeader;
+        this._isLeader = isLeader;
         if (isLeader) StartGroupPatrol();
     }
 
