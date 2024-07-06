@@ -8,12 +8,14 @@ public class IntroController : MonoBehaviour {
     bool _direction = false;
     [SerializeField] GameObject playerSection2;
     [SerializeField] GameObject section3;
+    [SerializeField] GameObject section4;
 
 
     public GameObject nextButton;
     public GameObject prevButton;
     public GameObject startButton;
     int index = 0;
+    Coroutine _saturationCoroutine;
 
     void Start() {
         // AudioManager.Instance.PlayMusic("intro");
@@ -47,6 +49,7 @@ public class IntroController : MonoBehaviour {
         ToggleButtons(index);
         TogglePlayerSection2Animator(index);
         ToggleSection3Animator(index);
+        ToggleSection4Animator(index);
         ToggleSaturation(index);
     }
 
@@ -79,9 +82,15 @@ public class IntroController : MonoBehaviour {
         section3.transform.Find("Player").GetComponent<Animator>().Play("playerIntroSection3");
     }
 
+    public void ToggleSection4Animator(int i)
+    {
+        Debug.Log("i: " + i);
+        section4.SetActive(i == 3);
+    }
+
     public void ToggleSaturation(int index) {
-        StopCoroutine(GameManager.Instance.ChangeSaturationCoroutine(1));
-        if (index == 3) StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
-        else StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5, 5));
+        if (_saturationCoroutine != null) StopCoroutine(_saturationCoroutine);
+        if (index == 3) _saturationCoroutine = StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
+        else StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(2, 5));
     }
 }
