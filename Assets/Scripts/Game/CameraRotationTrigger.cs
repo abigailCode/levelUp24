@@ -13,6 +13,7 @@ public class CameraRotationTrigger : MonoBehaviour {
         if (other.name == "Player") {
             _cameraController.Rotate(_direction);
             _direction = !_direction;
+            gameObject.SetActive(false);
         }
     }
 }
