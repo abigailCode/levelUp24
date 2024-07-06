@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class SettingsSetup : MonoBehaviour {
      void Start() {
@@ -12,9 +13,14 @@ public class SettingsSetup : MonoBehaviour {
         float savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.72f);
         AudioManager.Instance.ChangeSFXVolume(savedSFX);
 
-        string savedLanguage = PlayerPrefs.GetString("Language", "en");
-       // LocalizationManager.Instance.LoadLocalizedText(savedLanguage);
+        int savedLanguage = PlayerPrefs.GetInt("Language", 0);
+        StartCoroutine(SetLocale(savedLanguage));
 
         Debug.Log("volume: " + savedVolume + " sfx: " + savedSFX + " language: " + savedLanguage);
+    }
+
+    IEnumerator SetLocale(int localeId) {
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeId];
     }
 }

@@ -52,23 +52,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14339134357504
-    m_Key: siguiente
+    m_Key: next
     m_Metadata:
       m_Items: []
   - m_Id: 14605892091904
-    m_Key: anterior
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15456375308288
-    m_Key: setting
+    m_Key: previous
     m_Metadata:
       m_Items: []
   - m_Id: 15506912477184
     m_Key: volume
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15525874925568
-    m_Key: sfx
     m_Metadata:
       m_Items: []
   - m_Id: 15547861467136
@@ -105,6 +97,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17422719549440
     m_Key: catalan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 217882361495552
+    m_Key: save
     m_Metadata:
       m_Items: []
   m_Metadata:

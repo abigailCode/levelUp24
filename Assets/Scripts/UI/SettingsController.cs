@@ -1,67 +1,69 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Core.Parsing;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour {
-    [SerializeField] Slider volumeSlider;
-    [SerializeField] Slider sfxSlider;
-    [SerializeField] TMP_Dropdown languageSelector;
+    [SerializeField] Slider _volumeSlider;
+    [SerializeField] Slider _sfxSlider;
+    [SerializeField] TMP_Dropdown _languageSelector;
+
+    float _savedVolume;
+    float _selectedVolume;
+
+    float _savedSFX;
+    float _selectedSFX;
 
 
-    private float savedVolume;
-    private float selectedVolume;
-
-    private float savedSFX;
-    private float selectedSFX;
-
-    private string selectedLanguage;
-    private string savedLanguage;
+    bool _active = false;
+    int _selectedLanguage;
+    int _savedLanguage;
 
     void Start() {
-        savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.72f);
-        savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.72f);
-        savedLanguage = PlayerPrefs.GetString("Language", "English");
+        _savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.72f);
+        _savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.72f);
+        _savedLanguage = PlayerPrefs.GetInt("Language", 0);
 
-        selectedVolume = savedVolume;
-        selectedSFX = savedSFX;
-        selectedLanguage = savedLanguage;
+        _selectedVolume = _savedVolume;
+        _selectedSFX = _savedSFX;
+        _selectedLanguage = _savedLanguage;
 
-        LoadVolume(savedVolume);
-        LoadSFX(savedSFX);
-        LoadLanguage(savedLanguage);
-    }
-    void LoadVolume(float volume) {
-        Debug.Log("volume: " + volume);
-        volumeSlider.value = volume;
+        LoadVolume(_savedVolume);
+        LoadSFX(_savedSFX);
+        LoadLanguage(_savedLanguage);
     }
 
-    void LoadSFX(float sfx) {
-        Debug.Log("sfx: " + sfx);
-        sfxSlider.value = sfx;
-    }
+    void LoadVolume(float volume) => _volumeSlider.value = volume;
 
-    void LoadLanguage(string language) {
-        Debug.Log("language: " + language);
-        languageSelector.value = languageSelector.options.FindIndex(option => option.text == language);
-    }
-  
+    void LoadSFX(float sfx) => _sfxSlider.value = sfx;
 
+    void LoadLanguage(int languageId) => _languageSelector.value = languageId;
+    
     public void ChangeVolume() {
-        selectedVolume = volumeSlider.value;
-        AudioManager.Instance.ChangeVolume(volumeSlider.value);
-        PlayerPrefs.SetFloat("BackgroundMusicVolume", selectedVolume);
+        _selectedVolume = _volumeSlider.value;
+        AudioManager.Instance.ChangeVolume(_selectedVolume);
+        PlayerPrefs.SetFloat("BackgroundMusicVolume", _selectedVolume);
     }
 
     public void ChangeSFX() {
-        selectedSFX = sfxSlider.value;
-        AudioManager.Instance.ChangeSFXVolume(sfxSlider.value);
-        PlayerPrefs.SetFloat("SFXVolume", selectedSFX);
+        _selectedSFX = _sfxSlider.value;
+        AudioManager.Instance.ChangeSFXVolume(_selectedSFX);
+        PlayerPrefs.SetFloat("SFXVolume", _selectedSFX);
     }
 
     public void ChangeLanguage() {
-        selectedLanguage = languageSelector.options[languageSelector.value].text;
-        PlayerPrefs.SetString("Language", selectedLanguage);
+        if (_active) return;
+        _selectedLanguage = _languageSelector.value;
+        StartCoroutine(SetLocale(_selectedLanguage));
+        PlayerPrefs.SetInt("Language", _selectedLanguage);
+    }
+
+    IEnumerator SetLocale(int localeId) {
+        _active = true;
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeId];
+        _active = false;
     }
 
     public void SaveSettings() {
