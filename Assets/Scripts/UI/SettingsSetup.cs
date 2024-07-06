@@ -15,8 +15,6 @@ public class SettingsSetup : MonoBehaviour {
 
         int savedLanguage = PlayerPrefs.GetInt("Language", 0);
         StartCoroutine(SetLocale(savedLanguage));
-
-        Debug.Log("volume: " + savedVolume + " sfx: " + savedSFX + " language: " + savedLanguage);
     }
 
     IEnumerator SetLocale(int localeId) {

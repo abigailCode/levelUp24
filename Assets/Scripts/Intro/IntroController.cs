@@ -72,25 +72,18 @@ public class IntroController : MonoBehaviour {
         _cameraController.Rotate(_direction);
     }
 
-    public void TogglePlayerSection2Animator(int i) {
-        playerSection2.SetActive(i == 1);
-    }
+    public void TogglePlayerSection2Animator(int i) => playerSection2.SetActive(i == 1);
 
     public void ToggleSection3Animator(int i) {
-        Debug.Log("i: " + i);
         section3.SetActive(i == 2);
         section3.transform.Find("Player").GetComponent<Animator>().Play("playerIntroSection3");
     }
 
-    public void ToggleSection4Animator(int i)
-    {
-        Debug.Log("i: " + i);
-        section4.SetActive(i == 3);
-    }
+    public void ToggleSection4Animator(int i) => section4.SetActive(i == 3);
 
-    public void ToggleSaturation(int index) {
+    public void ToggleSaturation(int i) {
         if (_saturationCoroutine != null) StopCoroutine(_saturationCoroutine);
-        if (index == 3) _saturationCoroutine = StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
+        if (i == 3) _saturationCoroutine = StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(5));
         else StartCoroutine(GameManager.Instance.ChangeSaturationCoroutine(2, 5));
     }
 }
