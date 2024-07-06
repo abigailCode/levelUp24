@@ -11,13 +11,14 @@ public class EnemyController : MonoBehaviour {
     private bool isLeader = false;
 
     void Start() {
+        transform.Rotate(-90, 0, 0); // Fix rotation
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _groupMembers = new List<GameObject> { gameObject };
     }
 
     void Update() {
         if (!GameManager.Instance.isActive) StopAllCoroutines();
-        if (!isLeader && _groupMembers.Count > 0) FollowLeader();
+        if (!isLeader && _groupMembers.Count > 1) FollowLeader();
     }
 
     void SetRandomDestination() {

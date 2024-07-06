@@ -17,7 +17,15 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        _rb.velocity = new Vector3(moveHorizontal * _speed, _rb.velocity.y, moveVertical * _speed);
+        Vector3 moveDirection = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+        // Make the player look at the direction it's moving
+        if (moveDirection != Vector3.zero) {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+        }
+
+        // Mover el objeto en la dirección de movimiento
+        transform.Translate(moveDirection * _speed * Time.deltaTime, Space.World);
 
         if (Input.GetButtonDown("Jump") && _isGrounded) {
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
@@ -42,5 +50,7 @@ public class PlayerController : MonoBehaviour {
         _jumpForce = jumpForce;
     }
 
-    void OnDestroy() => GameManager.Instance.GameOver();
+    void OnDestroy() {
+        if (name == "Player") GameManager.Instance.GameOver();
+    }
 }
