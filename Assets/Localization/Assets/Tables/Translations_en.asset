@@ -73,16 +73,12 @@ MonoBehaviour:
     m_Localized: PREVIOUS
     m_Metadata:
       m_Items: []
-  - m_Id: 15456375308288
-    m_Localized: SETTINGS
+  - m_Id: 217882361495552
+    m_Localized: SAVE
     m_Metadata:
       m_Items: []
   - m_Id: 15506912477184
     m_Localized: VOLUME
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15525874925568
-    m_Localized: SFX
     m_Metadata:
       m_Items: []
   - m_Id: 15547861467136

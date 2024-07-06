@@ -72,12 +72,8 @@ MonoBehaviour:
     m_Localized: "SEG\xDCENT\n"
     m_Metadata:
       m_Items: []
-  - m_Id: 15525874925568
-    m_Localized: SFX
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15456375308288
-    m_Localized: "CONFIGURACI\xD3"
+  - m_Id: 217882361495552
+    m_Localized: GUARDAR
     m_Metadata:
       m_Items: []
   - m_Id: 15506912477184

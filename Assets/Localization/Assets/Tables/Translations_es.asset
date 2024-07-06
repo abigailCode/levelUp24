@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3674629898240
-    m_Localized: "CONFIGURACI\xD3N"
+    m_Localized: AJUSTES
     m_Metadata:
       m_Items: []
   - m_Id: 9528716460032
@@ -72,16 +72,12 @@ MonoBehaviour:
     m_Localized: ANTERIOR
     m_Metadata:
       m_Items: []
-  - m_Id: 15456375308288
-    m_Localized: AJUSTES
+  - m_Id: 217882361495552
+    m_Localized: GUARDAR
     m_Metadata:
       m_Items: []
   - m_Id: 15506912477184
     m_Localized: VOLUMEN
-    m_Metadata:
-      m_Items: []
-  - m_Id: 15525874925568
-    m_Localized: SFX
     m_Metadata:
       m_Items: []
   - m_Id: 15547861467136
