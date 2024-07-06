@@ -85,12 +85,12 @@ public class SyncController : MonoBehaviour {
         // }
     }
 
-    public void HandleEnemyConversion() {
+    public void HandlePlayerConversion() {
         if (_controller.enabled) {
             _controller.enabled = false;
             _enemyController.enabled = true;
             _navMeshAgent.enabled = true;
-            ChangeBalls(1);
+            ChangeBalls(0);
             gameObject.tag = "Enemy";
 
             // Add this object to its own group
@@ -99,6 +99,26 @@ public class SyncController : MonoBehaviour {
 
             // Set the first member as the leader
             SetGroupLeader(_groupController.groupMembers[0]);
+
+            // Update GameManager
+            GameManager.Instance.ChangePlayerCount();
+        }
+    }
+
+    public void HandleEnemyConversion() {
+        if (_enemyController.enabled) {
+            _controller.enabled = true;
+            _enemyController.enabled = false;
+            _navMeshAgent.enabled = false;
+            ChangeBalls(1);
+            gameObject.tag = "Player";
+
+            // Add this object to its own group
+            _groupController.groupMembers.Clear();
+
+            GroupController playerGroupController = GameObject.Find("Player").GetComponent<GroupController>();
+            playerGroupController.AddToGroup(gameObject);
+            _groupController.groupMembers = playerGroupController.groupMembers;
 
             // Update GameManager
             GameManager.Instance.ChangePlayerCount();

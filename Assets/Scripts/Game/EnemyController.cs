@@ -104,10 +104,11 @@ public class EnemyController : MonoBehaviour {
     }
 
     IEnumerator GoCrazy() {
-        while (true) {
-            if (Random.Range(0, 1) < 0.3f) GetComponent<SyncController>().HandleEnemyConversion();
-            yield return new WaitForSeconds(3f);
-        }
+        //while (true) {
+        //    if (Random.Range(0, 1) < 0.05f) GetComponent<SyncController>().HandleEnemyConversion();
+        //    yield return new WaitForSeconds(3f);
+        //}
+        yield return null;
     }
 
     public void SetLeader(bool isLeader) {

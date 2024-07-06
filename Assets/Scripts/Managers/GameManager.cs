@@ -58,10 +58,10 @@ public class GameManager : MonoBehaviour {
         } else if (status >= 60) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -40f));
             StartGroupCrazy();
-        } else if (status >= 50) {
+        } else if (status >= 40) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -20f));
             StartGroupAlert();
-        } else if (status >= 30) {
+        } else if (status >= 20) {
             _saturationCoroutine= StartCoroutine(ChangeSaturationCoroutine(2f, 0f));
             StartGroupPatrol();
         }
@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator UpdateStatusBar(float oldStatus) {
-        Debug.Log(oldStatus + " " + status);
         if (oldStatus > status) {
             for (float i = oldStatus; i >= status; i--) {
                 HPBar.GetComponent<Image>().fillAmount = i / 100;
