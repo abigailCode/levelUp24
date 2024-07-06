@@ -5,7 +5,7 @@ public class GroupController : MonoBehaviour {
     public List<GameObject> groupMembers = new List<GameObject>();
 
     void Start() {
-        //groupMembers = new List<GameObject> { gameObject };
+        // groupMembers = new List<GameObject> { gameObject };
     }
 
     public void AddToGroup(GameObject member) {

@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour {
                 NavMeshAgent agent = member.GetComponent<NavMeshAgent>();
                 if (agent != null && agent.enabled) {
                     agent.SetDestination(destination);
-                    //member.GetComponent<Animator>().SetFloat("velocity", 2);
+                    // member.GetComponent<Animator>().SetFloat("velocity", 2);
                 }
             }
         }
@@ -58,7 +58,7 @@ public class EnemyController : MonoBehaviour {
         SetRandomDestination();
         while (true) {
             if (Vector3.Distance(transform.position, _destination) < 1.5f) {
-                //foreach (GameObject member in _groupMembers)
+                // foreach (GameObject member in _groupMembers)
                 //    member.GetComponent<Animator>().SetFloat("velocity", 0);
                 yield return new WaitForSeconds(Random.Range(1f, 3f));
                 SetRandomDestination();
@@ -90,13 +90,13 @@ public class EnemyController : MonoBehaviour {
                 foreach (GameObject member in _groupMembers) {
                     if (member.TryGetComponent<NavMeshAgent>(out var agent)) {
                         agent.velocity = Vector3.zero;
-                        //member.GetComponent<Animator>().SetBool("attack", true);
+                        // member.GetComponent<Animator>().SetBool("attack", true);
                     }
                 }
                 yield return new WaitForSeconds(3);
             } else {
                 SetDestinationForGroup(_player.position);
-                //foreach (GameObject member in _groupMembers)
+                // foreach (GameObject member in _groupMembers)
                 //    member.GetComponent<Animator>().SetBool("attack", false);
             }
             yield return new WaitForEndOfFrame();
@@ -121,7 +121,7 @@ public class EnemyController : MonoBehaviour {
             GameObject leader = _groupMembers[0];
             if (agent != null && leader != null) {
                 agent.SetDestination(leader.transform.position);
-                //GetComponent<Animator>().SetFloat("velocity", 2);
+                // GetComponent<Animator>().SetFloat("velocity", 2);
             }
         }
     }

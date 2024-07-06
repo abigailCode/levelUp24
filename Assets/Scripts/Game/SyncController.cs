@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -42,7 +43,7 @@ public class SyncController : MonoBehaviour {
 
         // Add this enemy to the player's group
         playerGroup.AddToGroup(gameObject);
-        _groupController.groupMembers = playerGroup.groupMembers; // Sync group members
+        _groupController.groupMembers = new List<GameObject>(playerGroup.groupMembers); // Sync group members
 
         // Update GameManager
         GameManager.Instance.ChangePlayerCount();
@@ -52,14 +53,14 @@ public class SyncController : MonoBehaviour {
         GroupController enemyGroup = enemy.GetComponent<GroupController>();
 
         // Convert enemy group to players
-        foreach (GameObject member in enemyGroup.groupMembers) {
+        foreach (GameObject member in new List<GameObject>(enemyGroup.groupMembers)) {
             member.GetComponent<SyncController>().HandlePlayerCollision(gameObject);
         }
 
         // TODO: Fix this
 
         //// Merge groups if both are enemies
-        //if (_groupController.groupMembers[0].CompareTag("Enemy") && enemy.CompareTag("Enemy")) {
+        // if (_groupController.groupMembers[0].CompareTag("Enemy") && enemy.CompareTag("Enemy")) {
         //    foreach (GameObject member in enemyGroup.groupMembers) {
         //        _groupController.AddToGroup(member);
         //    }
@@ -67,7 +68,7 @@ public class SyncController : MonoBehaviour {
 
         //    // Set the first member as the leader
         //    SetGroupLeader(_groupController.groupMembers[0]);
-        //} else {
+        // } else {
         //    // Compare group sizes
         //    if (_groupController.GetGroupSize() >= enemyGroup.GetGroupSize()) {
         //        // Convert enemy group to players
@@ -81,7 +82,7 @@ public class SyncController : MonoBehaviour {
         //        }
         //        GameManager.Instance.GameOver();
         //    }
-        //}
+        // }
     }
 
     public void HandleEnemyConversion() {
