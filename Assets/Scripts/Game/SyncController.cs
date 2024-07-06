@@ -5,14 +5,13 @@ public class SyncController : MonoBehaviour {
     private PlayerController _controller;
     private EnemyController _enemyController;
     private NavMeshAgent _navMeshAgent;
-    private Renderer _renderer;
     private GroupController _groupController;
+    [SerializeField] GameObject[] _balls;
 
     void Start() {
         _controller = GetComponent<PlayerController>();
         _enemyController = GetComponent<EnemyController>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _renderer = GetComponent<Renderer>();
         _groupController = GetComponent<GroupController>();
     }
 
@@ -37,7 +36,8 @@ public class SyncController : MonoBehaviour {
         _controller.SetAttributes(player.GetComponent<PlayerController>().GetSpeed(), player.GetComponent<PlayerController>().GetJumpForce());
         _enemyController.enabled = false;
         _navMeshAgent.enabled = false;
-        _renderer.material.color = Color.red;
+        ChangeBalls(0);
+
         gameObject.tag = "Player";
 
         // Add this enemy to the player's group
@@ -82,7 +82,7 @@ public class SyncController : MonoBehaviour {
             _controller.enabled = false;
             _enemyController.enabled = true;
             _navMeshAgent.enabled = true;
-            _renderer.material.color = Color.blue;
+            ChangeBalls(1);
             gameObject.tag = "Enemy";
 
             // Add this object to its own group
@@ -106,5 +106,9 @@ public class SyncController : MonoBehaviour {
                 enemyController.SetLeader(false);
             }
         }
+    }
+
+    void ChangeBalls(int i) {
+        foreach (GameObject ball in _balls) ball.SetActive(i == 0);
     }
 }
