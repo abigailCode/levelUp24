@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
     public float status = 0;
     public GameObject HPBar;
     public bool isActive = false;
-    private int _playerCount = 1; // Start with 1 player
+    private int _playerCount = 1;
     private int _enemyCount = 0;
 
     void Awake() {

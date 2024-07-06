@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class DeathZoneBehaviour : MonoBehaviour {
 
-    void OnTriggerEnter(Collider other) => Destroy(other.gameObject);
+    void OnTriggerEnter(Collider other) {
+        GameManager.Instance.UpdateCounts();
+        Destroy(other.gameObject);
+    }
 
-    void OnCollisionEnter(Collision collision) => Destroy(collision.gameObject);
+    void OnCollisionEnter(Collision collision) {
+        GameManager.Instance.UpdateCounts();
+        Destroy(collision.gameObject);
+    }
 }

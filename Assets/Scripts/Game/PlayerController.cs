@@ -41,4 +41,6 @@ public class PlayerController : MonoBehaviour {
         _speed = speed;
         _jumpForce = jumpForce;
     }
+
+    void OnDestroy() => GameManager.Instance.GameOver();
 }
