@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void UpdateCounts() {
-        Debug.Log(status);
         _playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         _enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         totalBalls = _playerCount + _enemyCount;
@@ -49,6 +48,10 @@ public class GameManager : MonoBehaviour {
         totalBalls = _playerCount + _enemyCount;
         status = (float)_playerCount / totalBalls * 100;
 
+        Debug.Log("Player count: " + _playerCount);
+        Debug.Log("Enemy count: " + _enemyCount);
+        Debug.Log("Total balls: " + totalBalls);
+        Debug.Log("Status: " + status);
         if (status != oldStatus) StartCoroutine(UpdateStatusBar(oldStatus));
         if (status >= 75) {
             StopCoroutine(ChangeSaturationCoroutine(2f));
