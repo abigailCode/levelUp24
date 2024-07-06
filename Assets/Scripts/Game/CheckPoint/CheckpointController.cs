@@ -12,6 +12,8 @@ public class CheckpointController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             SCManager.Instance.LoadScene(nextLevel);
+            GameManager.Instance.StopAllCoroutines();
+            GameManager.Instance.ResumeGame();
         }
     }
 }

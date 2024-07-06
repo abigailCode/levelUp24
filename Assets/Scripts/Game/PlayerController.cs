@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         transform.Translate(moveDirection * _speed * Time.deltaTime, Space.World);
 
         if (Input.GetButtonDown("Jump") && _isGrounded) {
-            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rb.AddForce(Vector2.up * _jumpForce, ForceMode.Impulse);
             _isGrounded = false;
         }
     }
