@@ -103,6 +103,22 @@ MonoBehaviour:
     m_Key: save
     m_Metadata:
       m_Items: []
+  - m_Id: 629990400098304
+    m_Key: lose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632931123101696
+    m_Key: retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 637682652971008
+    m_Key: win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 638102955786240
+    m_Key: winExplenation
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

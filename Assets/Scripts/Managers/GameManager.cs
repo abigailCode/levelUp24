@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour {
     Coroutine _saturationCoroutine;
     Coroutine _destroyWorldCoroutine;
     Coroutine _updateStatusBar;
-    int groupStatus = 0;
+    int _groupStatus = 0;
+
+    RawImage _screenshotImage;
 
     void Awake() {
         if (Instance == null) {
@@ -48,7 +50,12 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver() {
         PauseGame();
-        Debug.Log("Game Over");
+        TakePicture("GameOverPanel");
+    }
+
+    public void GameWon() {
+        PauseGame();
+        TakePicture("GameWonPanel");
     }
 
     public void UpdateStatus() {
@@ -62,13 +69,13 @@ public class GameManager : MonoBehaviour {
         }
         if (status >= 75 && _destroyWorldCoroutine == null) {
             _destroyWorldCoroutine = StartCoroutine(DestroyWorld());
-        } else if (status >= 60 && groupStatus == 2) {
+        } else if (status >= 60 && _groupStatus == 2) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -40f));
             StartGroupCrazy();
-        } else if (status >= 40 && groupStatus == 1) {
+        } else if (status >= 40 && _groupStatus == 1) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -20f));
             StartGroupAlert();
-        } else if (status >= 20 && groupStatus == 0) {
+        } else if (status >= 20 && _groupStatus == 0) {
             _saturationCoroutine= StartCoroutine(ChangeSaturationCoroutine(2f, 0f));
             StartGroupPatrol();
         }
@@ -81,7 +88,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartGroupPatrol() {
-        groupStatus = 1;
+        _groupStatus = 1;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
@@ -91,7 +98,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartGroupAlert() {
-        groupStatus = 2;
+        _groupStatus = 2;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
@@ -102,7 +109,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartGroupCrazy() {
-        groupStatus = 3;
+        _groupStatus = 3;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             enemy.GetComponent<SyncController>().ChangeBalls(3);
@@ -165,8 +172,40 @@ public class GameManager : MonoBehaviour {
         StopAllCoroutines();
         ResumeGame();
         status = 0;
-        groupStatus = 0;
+        _groupStatus = 0;
         _saturationCoroutine = null;
         _destroyWorldCoroutine = null;
+    }
+
+    void TakePicture(string panelName) {
+        GameObject panel = GameObject.Find("HUD").transform.Find(panelName).gameObject;
+        gameObject.SetActive(true);
+        _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
+        CaptureScreenshot();
+        StartCoroutine(ShowPanel(panel));
+    }
+
+    IEnumerator ShowPanel(GameObject panel) {
+        yield return new WaitForSecondsRealtime(0.2f);
+        panel.SetActive(true);
+    }
+
+    void CaptureScreenshot() {
+        StartCoroutine(LoadScreenshot());
+    }
+
+    IEnumerator LoadScreenshot() {
+        // Espera un frame para que la captura de pantalla se complete
+        yield return new WaitForEndOfFrame();
+
+        // Crea una nueva textura con las dimensiones de la pantalla
+        Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
+        // Lee los datos de la pantalla en la textura
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        texture.Apply();
+
+        // Aplica la textura a la imagen del canvas
+        _screenshotImage.texture = texture;
     }
 }

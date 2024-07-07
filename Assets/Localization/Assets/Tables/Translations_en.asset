@@ -117,6 +117,23 @@ MonoBehaviour:
     m_Localized: ENGLISH
     m_Metadata:
       m_Items: []
+  - m_Id: 629990400098304
+    m_Localized: YOU LOST!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632931123101696
+    m_Localized: RETRY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 637682652971008
+    m_Localized: YOU WON!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 638102955786240
+    m_Localized: 'Thanks for playing Serenia: Balance Against Chaos. Feel free to
+      checkout our other game Fleje Beats'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

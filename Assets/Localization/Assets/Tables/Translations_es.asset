@@ -116,6 +116,23 @@ MonoBehaviour:
     m_Localized: "INGL\xC9S"
     m_Metadata:
       m_Items: []
+  - m_Id: 629990400098304
+    m_Localized: "\xA1HAS PERDIDO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 632931123101696
+    m_Localized: REINTENTAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 637682652971008
+    m_Localized: "\xA1HAS GANADO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 638102955786240
+    m_Localized: 'Gracias por jugar a Serenia: Balance Against Chaos. No dudes en
+      probar nuestro otro juego, Fleje Beats.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
