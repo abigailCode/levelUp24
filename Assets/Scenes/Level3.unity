@@ -2603,8 +2603,10 @@ MonoBehaviour:
   - {fileID: 1271412273}
   - {fileID: 1751071303}
   - {fileID: 1493541908}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 291145268}
+  - {fileID: 1011819638}
+  - {fileID: 364243456}
+  - {fileID: 668763680}
   _transitionSpeed: 2
   _isTransitioning: 0
 --- !u!114 &963194231
@@ -2684,7 +2686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2031f5788cbb8942b0e6726c8fbe8c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -61.4
+      value: -62.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2031f5788cbb8942b0e6726c8fbe8c3, type: 3}
       propertyPath: m_LocalRotation.w
