@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (!GameManager.Instance.isActive) return;
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f)) {
+            if (hit.collider.CompareTag("Ground")) _isGrounded = true;
+        } else _isGrounded = false;
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -38,6 +41,10 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Ground")) _isGrounded = true;
+    }
+
+    void OnCollisionExit(Collision collision) {
+        if (collision.gameObject.CompareTag("Ground")) _isGrounded = false;
     }
 
     public float GetSpeed() => _speed;

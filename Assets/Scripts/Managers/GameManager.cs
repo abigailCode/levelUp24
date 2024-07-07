@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     int _enemyCount = 0;
     Coroutine _saturationCoroutine;
     Coroutine _destroyWorldCoroutine;
+    Coroutine _updateStatusBar;
     int groupStatus = 0;
 
     void Awake() {
@@ -54,8 +55,11 @@ public class GameManager : MonoBehaviour {
         status = (float)_playerCount / totalBalls * 100;
         Debug.Log("Status: " + status);
         if (_saturationCoroutine != null) StopCoroutine(_saturationCoroutine);
-        if (status != oldStatus) StartCoroutine(UpdateStatusBar(oldStatus));
-        if (status >= 75 && _destroyWorldCoroutine != null) {
+        if (status != oldStatus) {
+            if (_updateStatusBar != null) StopCoroutine(_updateStatusBar);
+            _updateStatusBar = StartCoroutine(UpdateStatusBar(oldStatus));
+        }
+        if (status >= 75 && _destroyWorldCoroutine == null) {
             _destroyWorldCoroutine = StartCoroutine(DestroyWorld());
         } else if (status >= 60 && groupStatus == 2) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -40f));

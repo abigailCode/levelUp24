@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 7753245466958429700}
   - component: {fileID: 275917889569363704}
   - component: {fileID: 8192759543172288905}
+  - component: {fileID: 7599420510130769484}
   m_Layer: 0
   m_Name: EnemyContainer
   m_TagString: Enemy
@@ -900,6 +901,9 @@ MonoBehaviour:
   - {fileID: 6910980886627180793}
   - {fileID: 2078049846777505314}
   - {fileID: 2378986249559249236}
+  _colliders:
+  - {fileID: 275917889569363704}
+  - {fileID: 7599420510130769484}
 --- !u!114 &7753245466958429700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +952,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _jumpForce: 5
+--- !u!65 &7599420510130769484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670435945381876524}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &8786760190594332384
 GameObject:
   m_ObjectHideFlags: 0

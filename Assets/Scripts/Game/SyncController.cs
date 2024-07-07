@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class SyncController : MonoBehaviour {
     [SerializeField] GameObject[] _balls;
+    [SerializeField] BoxCollider[] _colliders;
     PlayerController _controller;
     EnemyController _enemyController;
     NavMeshAgent _navMeshAgent;
@@ -26,7 +27,6 @@ public class SyncController : MonoBehaviour {
 
     void HandlePlayerCollision(GameObject player) {
         if (_controller.enabled) return;
-        GroupController playerGroup = player.GetComponent<GroupController>();
         HandleEnemyConversion(player);
     }
 
@@ -90,6 +90,10 @@ public class SyncController : MonoBehaviour {
         if (_enemyController.enabled) {
             player = player != null ? player : GameObject.Find("Player");
 
+            if (_colliders.Length == 2) {
+                _colliders[0].enabled = false;
+                _colliders[1].enabled = true;
+            }
             _controller.enabled = true;
             _enemyController.StopAllCoroutines();
             _enemyController.enabled = false;

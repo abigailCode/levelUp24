@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 37277383}
   - component: {fileID: 37277382}
   - component: {fileID: 37277381}
+  - component: {fileID: 37277388}
   m_Layer: 0
   m_Name: EnemyContainer (2)
   m_TagString: Enemy
@@ -310,6 +311,9 @@ MonoBehaviour:
   - {fileID: 152561446}
   - {fileID: 2034663944}
   - {fileID: 767672906}
+  _colliders:
+  - {fileID: 37277382}
+  - {fileID: 37277388}
 --- !u!54 &37277385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -373,6 +377,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &37277388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37277379}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &72391841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,6 +4784,7 @@ GameObject:
   - component: {fileID: 1346046416}
   - component: {fileID: 1346046415}
   - component: {fileID: 1346046414}
+  - component: {fileID: 1346046421}
   m_Layer: 0
   m_Name: EnemyContainer (3)
   m_TagString: Enemy
@@ -4847,6 +4873,9 @@ MonoBehaviour:
   - {fileID: 1509338521}
   - {fileID: 2086194002}
   - {fileID: 1699806175}
+  _colliders:
+  - {fileID: 1346046415}
+  - {fileID: 1346046421}
 --- !u!54 &1346046418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4910,6 +4939,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1346046421
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346046412}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &1350629188
 GameObject:
   m_ObjectHideFlags: 0
@@ -6263,8 +6313,9 @@ GameObject:
   - component: {fileID: 1637817576}
   - component: {fileID: 1637817575}
   - component: {fileID: 1637817574}
+  - component: {fileID: 1637817581}
   m_Layer: 0
-  m_Name: EnemyContainer (5)
+  m_Name: EnemyContainer (4)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6351,6 +6402,9 @@ MonoBehaviour:
   - {fileID: 1358016616}
   - {fileID: 119299352}
   - {fileID: 1942345586}
+  _colliders:
+  - {fileID: 1637817575}
+  - {fileID: 1637817581}
 --- !u!54 &1637817578
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6414,6 +6468,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1637817581
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637817572}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &1673500954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,8 +7443,9 @@ GameObject:
   - component: {fileID: 1880774740}
   - component: {fileID: 1880774739}
   - component: {fileID: 1880774738}
+  - component: {fileID: 1880774745}
   m_Layer: 0
-  m_Name: EnemyContainer (6)
+  m_Name: EnemyContainer (5)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7456,6 +7532,9 @@ MonoBehaviour:
   - {fileID: 1549688733}
   - {fileID: 1184989641}
   - {fileID: 1681882062}
+  _colliders:
+  - {fileID: 1880774739}
+  - {fileID: 1880774745}
 --- !u!54 &1880774742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7519,6 +7598,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1880774745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880774736}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &1889559963
 GameObject:
   m_ObjectHideFlags: 0
@@ -8596,6 +8696,7 @@ GameObject:
   - component: {fileID: 2053093546}
   - component: {fileID: 2053093545}
   - component: {fileID: 2053093544}
+  - component: {fileID: 2053093551}
   m_Layer: 0
   m_Name: EnemyContainer (1)
   m_TagString: Enemy
@@ -8684,6 +8785,9 @@ MonoBehaviour:
   - {fileID: 1360601399}
   - {fileID: 741823541}
   - {fileID: 1084566178}
+  _colliders:
+  - {fileID: 2053093545}
+  - {fileID: 2053093551}
 --- !u!54 &2053093548
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8747,6 +8851,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &2053093551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053093542}
+  m_Material: {fileID: 13400000, guid: aedd51aa7623026488b40886cbebdd99, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5885279, y: 0.8668144, z: 1.023504}
+  m_Center: {x: -0.018269256, y: 0.4217282, z: -0.011372984}
 --- !u!1 &2055287926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,10 +9494,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3963417320363919239, guid: 3cde302e0c4fc414b9d9879b7c2beb3f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 4758305954510019159, guid: 3cde302e0c4fc414b9d9879b7c2beb3f, type: 3}
       propertyPath: m_Name
       value: PlayerObj
@@ -9526,10 +9647,6 @@ PrefabInstance:
     - target: {fileID: 5862646914997577865, guid: 6912f2eb7b67dce4a90d208edb8861e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904945669735918053, guid: 6912f2eb7b67dce4a90d208edb8861e8, type: 3}
-      propertyPath: m_Speed
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8670435945381876524, guid: 6912f2eb7b67dce4a90d208edb8861e8, type: 3}
       propertyPath: m_Name
