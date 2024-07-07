@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         } else Destroy(gameObject);
         AudioManager.Instance.PlayMusic("mainTheme");
-        StartCoroutine(DestroyWorld());
     }
 
     public void PauseGame() {
+        StopAllCoroutines();
         isActive = false;
     }
 
@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour {
         float oldStatus = status;
         totalBalls = _playerCount + _enemyCount;
         status = (float)_playerCount / totalBalls * 100;
-        Debug.Log("Status: " + status);
         if (_saturationCoroutine != null) StopCoroutine(_saturationCoroutine);
         if (status != oldStatus) {
             if (_updateStatusBar != null) StopCoroutine(_updateStatusBar);
@@ -65,7 +64,7 @@ public class GameManager : MonoBehaviour {
             _destroyWorldCoroutine = StartCoroutine(DestroyWorld());
         } else if (status >= 60 && groupStatus == 2) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -40f));
-            //StartGroupCrazy();
+            StartGroupCrazy();
         } else if (status >= 40 && groupStatus == 1) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -20f));
             StartGroupAlert();
@@ -85,7 +84,6 @@ public class GameManager : MonoBehaviour {
         groupStatus = 1;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
-            Debug.Log("Starting patrol");
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.StopAllCoroutines();
             enemyController.StartGroupPatrol();
@@ -96,8 +94,8 @@ public class GameManager : MonoBehaviour {
         groupStatus = 2;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
-            Debug.Log("Starting alert");
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemy.GetComponent<SyncController>().ChangeBalls(2);
             enemyController.StopAllCoroutines();
             enemyController.StartGroupAlert();
         }
@@ -107,21 +105,23 @@ public class GameManager : MonoBehaviour {
         groupStatus = 3;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
-            EnemyController enemyController = enemy.GetComponent<EnemyController>();
-            enemyController.StopAllCoroutines();
-            enemyController.StartGroupCrazy();
+            enemy.GetComponent<SyncController>().ChangeBalls(3);
+            //EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            //enemyController.StopAllCoroutines();
+            //enemyController.StartGroupCrazy();
         }
     }
 
     IEnumerator DestroyWorld() {
         int count = 20;
+        CameraShake cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
         GameObject countdown = GameObject.Find("CountDown");
         TMP_Text countdownText = countdown.GetComponent<TMP_Text>();
         countdown.GetComponent<Animator>().enabled = true;
         StartCoroutine(ChangeSaturationCoroutine(count));
         AudioManager.Instance.PlaySFX("countdown");
         while (count > 0) {
-            CameraShake.Shake(0.5f, 0.7f);
+            cameraShake.Shake(0.5f, 0.7f);
             countdownText.text = count.ToString();
             yield return new WaitForSeconds(1f);
             count--;

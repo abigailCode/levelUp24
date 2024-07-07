@@ -2,29 +2,16 @@ using System.Collections;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour {
-    public static CameraShake Instance;
-
     [SerializeField, Range(0, 10)] float _duration = 1f;
     [SerializeField, Range(0, 2)] float _strengthMultiplier = 0.2f;
     [SerializeField] AnimationCurve _curve;
 
-    public bool isShaking;
+    bool _isShaking;
 
-    private void OnValidate() => CurveSetup();
+    void OnValidate() => CurveSetup();
 
-    void Awake() {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
-    }
-
-    public static void Shake(float duration, float strengthMultiplier) {
-        if (Instance != null && !Instance.isShaking) {
-            Instance.StartCoroutine(Instance.ShakeCoroutine(duration, strengthMultiplier));
-        }
+    public void Shake(float duration, float strengthMultiplier) {
+        if (!_isShaking) StartCoroutine(ShakeCoroutine(duration, strengthMultiplier));
     }
 
     IEnumerator ShakeCoroutine(float duration, float strengthMultiplier) {
@@ -32,7 +19,7 @@ public class CameraShake : MonoBehaviour {
         var cameraBehaviour = GetComponent<CameraBehaviour>();
         if (cameraBehaviour._isTransitioning) yield break;
 
-        isShaking = true;
+        _isShaking = true;
         Vector3 originalPos = transform.localPosition;
         float elapsed = 0f;
 
@@ -44,7 +31,7 @@ public class CameraShake : MonoBehaviour {
         }
 
         transform.localPosition = originalPos;
-        isShaking = false;
+        _isShaking = false;
     }
 
     [ContextMenu("Curve Setup")]

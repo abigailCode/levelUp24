@@ -9,6 +9,7 @@ public class CameraBehaviour : MonoBehaviour {
     Transform _targetRotationPoint;
 
     void Start() {
+        AudioManager.Instance.StopSFX();
         Rotate(true);
         GameManager.Instance.ResumeGame();
     }

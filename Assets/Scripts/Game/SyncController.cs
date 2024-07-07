@@ -71,7 +71,7 @@ public class SyncController : MonoBehaviour {
             _controller.enabled = false;
             _enemyController.enabled = true;
             _navMeshAgent.enabled = true;
-            ChangeBalls(0);
+            ChangeBalls(0); // TODO: Show the correct ball
             gameObject.tag = "Enemy";
 
             // Add this object to its own group
@@ -117,15 +117,11 @@ public class SyncController : MonoBehaviour {
     void SetGroupLeader(GameObject leader) {
         foreach (GameObject member in _groupController.groupMembers) {
             EnemyController enemyController = member.GetComponent<EnemyController>();
-            if (member == leader) {
-                enemyController.SetLeader(true);
-            } else {
-                enemyController.SetLeader(false);
-            }
+            enemyController.SetLeader(member == leader);
         }
     }
 
-    void ChangeBalls(int i) {
-        foreach (GameObject ball in _balls) ball.SetActive(i == 0);
+    public void ChangeBalls(int i) {
+        for (int j = 0; j < _balls.Length; j++) _balls[j].SetActive(j == i);
     }
 }
