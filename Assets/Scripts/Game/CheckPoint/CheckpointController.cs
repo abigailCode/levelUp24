@@ -13,6 +13,7 @@ public class CheckpointController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("portal");
+        if (nextLevel == "Level4") { GameManager.Instance.GameWon(); return; }
         SCManager.Instance.LoadScene(nextLevel);
         GameManager.Instance.NextLevel();
     }
