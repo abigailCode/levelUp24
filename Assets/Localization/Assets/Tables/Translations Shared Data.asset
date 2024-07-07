@@ -123,6 +123,10 @@ MonoBehaviour:
     m_Key: pause
     m_Metadata:
       m_Items: []
+  - m_Id: 692801742110720
+    m_Key: "Programaci\xF3n, dise\xF1o de juego y arte por:"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

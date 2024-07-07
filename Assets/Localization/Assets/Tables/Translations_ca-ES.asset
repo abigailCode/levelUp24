@@ -137,6 +137,10 @@ MonoBehaviour:
     m_Localized: PAUSA
     m_Metadata:
       m_Items: []
+  - m_Id: 692801742110720
+    m_Localized: "Programaci\xF3, disseny de joc i art per:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
