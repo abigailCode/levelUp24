@@ -41,7 +41,11 @@ public class MenuController : MonoBehaviour {
             case "GoToMenu":
                 SCManager.Instance.LoadScene("Menu");
                 break;
+            case "Resume":
+                GameManager.Instance.ResumeGame();
+                break;
             case "LoadScene":
+                GameManager.Instance.ResumeGame();
                 SCManager.Instance.LoadScene(scene);
                 break;
             case "ExitGame":
@@ -71,6 +75,8 @@ public class MenuController : MonoBehaviour {
     public void GoToMenu() => menuController.PerformAction("GoToMenu");
 
     public void LoadScene(string scene) => menuController.PerformAction("LoadScene", scene);
+
+    public void Resume() => menuController.PerformAction("Resume");
 
     public void ExitGame() => menuController.PerformAction("ExitGame");
 }

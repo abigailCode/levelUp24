@@ -17,6 +17,10 @@ public class SyncController : MonoBehaviour {
         _groupController = GetComponent<GroupController>();
     }
 
+    void Update() {
+        if (!GameManager.Instance.isActive) { FreezePosition(); return; }
+    }
+
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
             HandlePlayerCollision(collision.gameObject);
@@ -124,5 +128,9 @@ public class SyncController : MonoBehaviour {
 
     public void ChangeBalls(int i) {
         for (int j = 0; j < _balls.Length; j++) _balls[j].SetActive(j == i);
+    }
+
+    void FreezePosition() {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
     }
 }

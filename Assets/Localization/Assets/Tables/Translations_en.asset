@@ -134,6 +134,10 @@ MonoBehaviour:
       checkout our other game Fleje Beats'
     m_Metadata:
       m_Items: []
+  - m_Id: 677962714349568
+    m_Localized: PAUSE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

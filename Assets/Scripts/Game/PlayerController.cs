@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if (!GameManager.Instance.isActive) return;
+        if (!GameManager.Instance.isActive) { FreezePosition(); return; }
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f)) {
             if (hit.collider.CompareTag("Ground")) _isGrounded = true;
         } else _isGrounded = false;
@@ -64,5 +64,9 @@ public class PlayerController : MonoBehaviour {
     void OnDestroy() {
         if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("fall");
         if (name == "PlayerObj") GameManager.Instance.GameOver();
+    }
+
+    void FreezePosition() {
+        _rb.constraints = RigidbodyConstraints.FreezePosition;
     }
 }

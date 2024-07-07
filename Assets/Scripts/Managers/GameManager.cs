@@ -29,12 +29,28 @@ public class GameManager : MonoBehaviour {
         AudioManager.Instance.PlayMusic("mainTheme");
     }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (isActive) PauseGame();
+            else ResumeGame();
+        }
+    }
+
     public void PauseGame() {
+        GameObject hud = GameObject.Find("HUD");
+        if (hud == null) return;
+        GameObject pausePanel = hud.transform.Find("PausePanel").gameObject;
+        pausePanel.SetActive(true);
         StopAllCoroutines();
+        AudioManager.Instance.StopSFX();
         isActive = false;
     }
 
     public void ResumeGame() {
+        GameObject hud = GameObject.Find("HUD");
+        if (hud == null) return;
+        GameObject pausePanel = hud.transform.Find("PausePanel").gameObject;
+        pausePanel.SetActive(false);
         isActive = true;
         HPBar = GameObject.Find("HPBar");
         if (HPBar == null) return;
@@ -192,7 +208,7 @@ public class GameManager : MonoBehaviour {
         _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
         CaptureScreenshot();
         StartCoroutine(ShowPanel(panel));
-        StopCoroutine(_destroyWorldCoroutine);
+        if (_destroyWorldCoroutine != null) StopCoroutine(_destroyWorldCoroutine);
         if (_countdownText != null) _countdownText.text = "";
     }
 
