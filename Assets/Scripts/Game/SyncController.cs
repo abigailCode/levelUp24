@@ -25,28 +25,9 @@ public class SyncController : MonoBehaviour {
     }
 
     void HandlePlayerCollision(GameObject player) {
+        if (_controller.enabled) return;
         GroupController playerGroup = player.GetComponent<GroupController>();
-
-        if (_controller.enabled) {
-            // Already a player
-            return;
-        }
-
-        // Convert this enemy to player
-        _controller.enabled = true;
-        _controller.SetAttributes(player.GetComponent<PlayerController>().GetSpeed(), player.GetComponent<PlayerController>().GetJumpForce());
-        _enemyController.enabled = false;
-        _navMeshAgent.enabled = false;
-        ChangeBalls(0);
-
-        gameObject.tag = "Player";
-
-        // Add this enemy to the player's group
-        playerGroup.AddToGroup(gameObject);
-        _groupController.groupMembers = new List<GameObject>(playerGroup.groupMembers); // Sync group members
-
-        // Update GameManager
-        GameManager.Instance.ChangePlayerCount();
+        HandleEnemyConversion(player);
     }
 
     void HandleEnemyCollision(GameObject enemy) {
@@ -105,9 +86,12 @@ public class SyncController : MonoBehaviour {
         }
     }
 
-    public void HandleEnemyConversion() {
+    public void HandleEnemyConversion(GameObject player = null) {
         if (_enemyController.enabled) {
+            player = player != null ? player : GameObject.Find("Player");
+
             _controller.enabled = true;
+            _enemyController.StopAllCoroutines();
             _enemyController.enabled = false;
             _navMeshAgent.enabled = false;
             ChangeBalls(1);
@@ -116,9 +100,10 @@ public class SyncController : MonoBehaviour {
             // Add this object to its own group
             _groupController.groupMembers.Clear();
 
-            GroupController playerGroupController = GameObject.Find("Player").GetComponent<GroupController>();
+            GroupController playerGroupController = player.GetComponent<GroupController>();
             playerGroupController.AddToGroup(gameObject);
             _groupController.groupMembers = playerGroupController.groupMembers;
+            _controller.SetAttributes(player.GetComponent<PlayerController>().GetSpeed(), player.GetComponent<PlayerController>().GetJumpForce());
 
             // Update GameManager
             GameManager.Instance.ChangePlayerCount();

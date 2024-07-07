@@ -8,7 +8,6 @@ public class CheckpointController : MonoBehaviour
     public string nextLevel;
     private void OnTriggerEnter(Collider other) {
         SCManager.Instance.LoadScene(nextLevel);
-        GameManager.Instance.StopAllCoroutines();
-        GameManager.Instance.ResumeGame();
+        GameManager.Instance.NextLevel();
     }
 }

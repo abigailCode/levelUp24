@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     int _playerCount = 0;
     int _enemyCount = 0;
     Coroutine _saturationCoroutine;
+    Coroutine _destroyWorldCoroutine;
+    int groupStatus = 0;
 
     void Awake() {
         if (Instance == null) {
@@ -50,18 +52,18 @@ public class GameManager : MonoBehaviour {
         float oldStatus = status;
         totalBalls = _playerCount + _enemyCount;
         status = (float)_playerCount / totalBalls * 100;
-
+        Debug.Log("Status: " + status);
         if (_saturationCoroutine != null) StopCoroutine(_saturationCoroutine);
         if (status != oldStatus) StartCoroutine(UpdateStatusBar(oldStatus));
-        if (status >= 75) {
-            StartCoroutine(DestroyWorld());
-        } else if (status >= 60) {
+        if (status >= 75 && _destroyWorldCoroutine != null) {
+            _destroyWorldCoroutine = StartCoroutine(DestroyWorld());
+        } else if (status >= 60 && groupStatus == 2) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -40f));
-            StartGroupCrazy();
-        } else if (status >= 40) {
+            //StartGroupCrazy();
+        } else if (status >= 40 && groupStatus == 1) {
             _saturationCoroutine = StartCoroutine(ChangeSaturationCoroutine(2f, -20f));
             StartGroupAlert();
-        } else if (status >= 20) {
+        } else if (status >= 20 && groupStatus == 0) {
             _saturationCoroutine= StartCoroutine(ChangeSaturationCoroutine(2f, 0f));
             StartGroupPatrol();
         }
@@ -74,25 +76,33 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartGroupPatrol() {
+        groupStatus = 1;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
+            Debug.Log("Starting patrol");
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.StopAllCoroutines();
             enemyController.StartGroupPatrol();
         }
     }
 
     void StartGroupAlert() {
+        groupStatus = 2;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
+            Debug.Log("Starting alert");
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.StopAllCoroutines();
             enemyController.StartGroupAlert();
         }
     }
 
     void StartGroupCrazy() {
+        groupStatus = 3;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.StopAllCoroutines();
             enemyController.StartGroupCrazy();
         }
     }
@@ -134,5 +144,14 @@ public class GameManager : MonoBehaviour {
                 HPBar.GetComponent<Image>().fillAmount = i / 100;
                 yield return new WaitForSeconds(0.1f);
             }
+    }
+
+    public void NextLevel() {
+        StopAllCoroutines();
+        ResumeGame();
+        status = 0;
+        groupStatus = 0;
+        _saturationCoroutine = null;
+        _destroyWorldCoroutine = null;
     }
 }

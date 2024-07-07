@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour {
             if (Vector3.Distance(transform.position, _destination) < 1.5f) {
                 // foreach (GameObject member in _groupMembers)
                 //    member.GetComponent<Animator>().SetFloat("velocity", 0);
-                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                yield return new WaitForSeconds(Random.Range(1f, 5f));
                 SetRandomDestination();
             }
             yield return new WaitForEndOfFrame();
@@ -70,34 +70,8 @@ public class EnemyController : MonoBehaviour {
     IEnumerator Alert() {
         while (true) {
             if (Vector3.Distance(transform.position, _player.position) < _playerDetectionDistance) {
-                StopCoroutine(Patrol());
-                StartCoroutine(Attack());
-                break;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator Attack() {
-        while (true) {
-            if (Vector3.Distance(transform.position, _player.position) < _playerDetectionDistance) {
-                StartCoroutine(Patrol());
-                StartCoroutine(Alert());
-                break;
-            }
-            if (Vector3.Distance(transform.position, _player.position) < _playerAttackDistance) {
-                SetDestinationForGroup(transform.position);
-                foreach (GameObject member in _groupMembers) {
-                    if (member.TryGetComponent<NavMeshAgent>(out var agent)) {
-                        agent.velocity = Vector3.zero;
-                        // member.GetComponent<Animator>().SetBool("attack", true);
-                    }
-                }
-                yield return new WaitForSeconds(3);
-            } else {
-                SetDestinationForGroup(_player.position);
-                // foreach (GameObject member in _groupMembers)
-                //    member.GetComponent<Animator>().SetBool("attack", false);
+                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                SetRandomDestination();
             }
             yield return new WaitForEndOfFrame();
         }
@@ -113,17 +87,17 @@ public class EnemyController : MonoBehaviour {
 
     public void SetLeader(bool isLeader) {
         this._isLeader = isLeader;
-        if (isLeader) StartGroupPatrol();
+        if (isLeader) {
+            StopAllCoroutines();
+            StartGroupPatrol();
+        }
     }
 
     void FollowLeader() {
         if (_groupMembers.Count > 0) {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             GameObject leader = _groupMembers[0];
-            if (agent != null && leader != null) {
-                agent.SetDestination(leader.transform.position);
-                // GetComponent<Animator>().SetFloat("velocity", 2);
-            }
+            if (agent != null && leader != null) agent.SetDestination(leader.transform.position);
         }
     }
 

@@ -54,6 +54,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnDestroy() {
-        if (name == "Player") GameManager.Instance.GameOver();
+        if (name == "PlayerObj") GameManager.Instance.GameOver();
     }
 }
