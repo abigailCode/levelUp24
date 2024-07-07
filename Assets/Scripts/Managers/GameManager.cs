@@ -50,11 +50,13 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver() {
         PauseGame();
+        AudioManager.Instance.PlayMusic("gameOverTheme");
         TakePicture("GameOverPanel");
     }
 
     public void GameWon() {
         PauseGame();
+        AudioManager.Instance.PlayMusic("gameWonTheme");
         TakePicture("GameWonPanel");
     }
 

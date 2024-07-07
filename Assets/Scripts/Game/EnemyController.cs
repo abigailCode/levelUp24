@@ -18,7 +18,10 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Update() {
-        if (!GameManager.Instance.isActive) StopAllCoroutines();
+        if (!GameManager.Instance.isActive) {
+            StopAllCoroutines();
+            return;
+        }
         if (!_isLeader && _groupMembers.Count > 1) FollowLeader();
     }
 
