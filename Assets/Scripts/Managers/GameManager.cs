@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     Coroutine _destroyWorldCoroutine;
     Coroutine _updateStatusBar;
     int _groupStatus = 0;
+    TMP_Text _countdownText;
 
     RawImage _screenshotImage;
 
@@ -125,18 +126,18 @@ public class GameManager : MonoBehaviour {
         int count = 20;
         CameraShake cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
         GameObject countdown = GameObject.Find("CountDown");
-        TMP_Text countdownText = countdown.GetComponent<TMP_Text>();
+        _countdownText = countdown.GetComponent<TMP_Text>();
         countdown.GetComponent<Animator>().enabled = true;
         StartCoroutine(ChangeSaturationCoroutine(count));
         AudioManager.Instance.PlaySFX("countdown");
         while (count > 0) {
             cameraShake.Shake(0.5f, 0.7f);
-            countdownText.text = count.ToString();
+            _countdownText.text = count.ToString();
             yield return new WaitForSeconds(1f);
             count--;
         }
         AudioManager.Instance.StopSFX();
-        countdownText.text = "";
+        _countdownText.text = "";
         countdown.GetComponent<Animator>().enabled = false;
         GameOver();
     }
@@ -185,6 +186,8 @@ public class GameManager : MonoBehaviour {
         _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
         CaptureScreenshot();
         StartCoroutine(ShowPanel(panel));
+        StopCoroutine(_destroyWorldCoroutine);
+        if (_countdownText != null) _countdownText.text = "";
     }
 
     IEnumerator ShowPanel(GameObject panel) {

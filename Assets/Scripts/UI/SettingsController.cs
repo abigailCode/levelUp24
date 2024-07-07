@@ -21,8 +21,8 @@ public class SettingsController : MonoBehaviour {
     int _savedLanguage;
 
     void Start() {
-        _savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.72f);
-        _savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.72f);
+        _savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.5f);
+        _savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
         _savedLanguage = PlayerPrefs.GetInt("Language", 0);
 
         _selectedVolume = _savedVolume;

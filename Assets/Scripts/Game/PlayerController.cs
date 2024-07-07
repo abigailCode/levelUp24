@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
         _rb.MovePosition(targetPosition);
 
         if (Input.GetButtonDown("Jump") && _isGrounded) {
+            if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("jump");
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode.Impulse);
             _isGrounded = false;
         }
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnDestroy() {
+        if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("fall");
         if (name == "PlayerObj") GameManager.Instance.GameOver();
     }
 }

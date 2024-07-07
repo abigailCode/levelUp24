@@ -11,8 +11,7 @@ public class MenuController : MonoBehaviour {
     }
 
     public void PerformAction(string action, string scene = "") {
-        //if (!GameManager.instance.isActive)
-        //    return;
+        if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
 
         switch (action) {
             case "GoToIntro":

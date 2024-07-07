@@ -89,6 +89,7 @@ public class SyncController : MonoBehaviour {
     public void HandleEnemyConversion(GameObject player = null) {
         if (_enemyController.enabled) {
             player = player != null ? player : GameObject.Find("Player");
+            if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("enemyConversion");
 
             if (_colliders.Length == 2) {
                 _colliders[0].enabled = false;

@@ -20,6 +20,11 @@ public class AudioManager : MonoBehaviour {
 
     void LoadSFXClips() {
         _sfxClips["countdown"] = Resources.Load<AudioClip>("SFX/countdownSFX");
+        _sfxClips["buttonClicked"] = Resources.Load<AudioClip>("SFX/buttonClickedSFX");
+        _sfxClips["jump"] = Resources.Load<AudioClip>("SFX/jumpSFX");
+        _sfxClips["portal"] = Resources.Load<AudioClip>("SFX/portalSFX");
+        _sfxClips["fall"] = Resources.Load<AudioClip>("SFX/fallSFX");
+        _sfxClips["enemyConversion"] = Resources.Load<AudioClip>("SFX/enemyConversionSFX");
     }
 
     void LoadMusicClips() {
@@ -42,6 +47,10 @@ public class AudioManager : MonoBehaviour {
             _musicSource.clip = _musicClips[clipName];
             _musicSource.Play();
         } else Debug.LogWarning("El AudioClip " + clipName + " no se encontró en el diccionario de musicClips.");
+    }
+
+    public bool IsPlayingCountDown() {
+        return _sfxSource.clip.name == "countdownSFX";
     }
 
     public void StopMusic() =>  _musicSource.Stop();

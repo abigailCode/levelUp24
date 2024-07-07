@@ -6,11 +6,11 @@ using UnityEngine.Localization.Settings;
 public class SettingsSetup : MonoBehaviour {
      void Start() {
         
-        float savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.72f);
+        float savedVolume = PlayerPrefs.GetFloat("BackgroundMusicVolume", 0.5f);
         
         AudioManager.Instance.ChangeVolume(savedVolume);
         
-        float savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.72f);
+        float savedSFX = PlayerPrefs.GetFloat("SFXVolume", 0.8f);
         AudioManager.Instance.ChangeSFXVolume(savedSFX);
 
         int savedLanguage = PlayerPrefs.GetInt("Language", 0);

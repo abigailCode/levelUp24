@@ -54,20 +54,10 @@ public class IntroController : MonoBehaviour {
     }
 
     public void ToggleButtons(int index) {
-
-        if (index == 0) {
-            prevButton.SetActive(false);
-        } else {
-            prevButton.SetActive(true);
-        }
-
-        if (index == 3) {
-            nextButton.SetActive(false);
-            startButton.SetActive(true);
-        } else {
-            nextButton.SetActive(true);
-            startButton.SetActive(false);
-        }
+        if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
+        prevButton.SetActive(index != 0);
+        nextButton.SetActive(index != 3);
+        startButton.SetActive(index == 3);
 
         _cameraController.Rotate(_direction);
     }
