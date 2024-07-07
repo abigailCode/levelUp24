@@ -173,12 +173,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextLevel() {
+        AudioManager.Instance.PlayMusic("mainTheme");
+        AudioManager.Instance.StopSFX();
         StopAllCoroutines();
         ResumeGame();
         status = 0;
         _groupStatus = 0;
         _saturationCoroutine = null;
         _destroyWorldCoroutine = null;
+        _updateStatusBar = null;
+        _countdownText = null;
     }
 
     void TakePicture(string panelName) {

@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour {
         } else Debug.LogWarning("El AudioClip " + clipName + " no se encontró en el diccionario de musicClips.");
     }
 
-    public bool IsPlayingCountDown() => _sfxSource.clip != null && _sfxSource.clip.name == "countdownSFX";
+    public bool IsPlayingCountDown() => _sfxSource.clip != null && _sfxSource.isPlaying && _sfxSource.clip.name == "countdownSFX";
 
     public void StopMusic() =>  _musicSource.Stop();
 
