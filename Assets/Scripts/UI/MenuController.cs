@@ -40,7 +40,7 @@ public class MenuController : MonoBehaviour {
                 SCManager.Instance.LoadScene("RankingScene");
                 break;
             case "GoToMenu":
-                SCManager.Instance.LoadScene("MenuScene");
+                SCManager.Instance.LoadScene("Menu");
                 break;
             case "LoadScene":
                 SCManager.Instance.LoadScene(scene);

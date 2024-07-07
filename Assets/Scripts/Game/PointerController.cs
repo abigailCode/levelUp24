@@ -11,6 +11,7 @@ public class PointerController : MonoBehaviour {
 
 
     void Update() {
+        if (!GameManager.Instance.isActive) return;
         float x = target.transform.position.x;
         float z = target.transform.position.z;
         float y = target.transform.position.y;
