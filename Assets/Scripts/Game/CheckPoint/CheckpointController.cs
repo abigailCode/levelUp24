@@ -6,14 +6,9 @@ public class CheckpointController : MonoBehaviour
 {
     [Header("|----------------Next Level Scene Name----------------|")]
     public string nextLevel;
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Collided with " + other.name);
-        if (other.CompareTag("Player"))
-        {
-            SCManager.Instance.LoadScene(nextLevel);
-            GameManager.Instance.StopAllCoroutines();
-            GameManager.Instance.ResumeGame();
-        }
+    private void OnTriggerEnter(Collider other) {
+        SCManager.Instance.LoadScene(nextLevel);
+        GameManager.Instance.StopAllCoroutines();
+        GameManager.Instance.ResumeGame();
     }
 }

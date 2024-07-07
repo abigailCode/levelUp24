@@ -19,12 +19,16 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveDirection = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
         // Make the player look at the direction it's moving
         if (moveDirection != Vector3.zero) {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+           Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2*Time.deltaTime);
         }
 
         // Mover el objeto en la dirección de movimiento
-        transform.Translate(moveDirection * _speed * Time.deltaTime, Space.World);
+       //transform.Translate(moveDirection * _speed * Time.deltaTime, Space.World);
+
+          // Move the player using the Rigidbody
+        Vector3 targetPosition = _rb.position + moveDirection * _speed * Time.deltaTime;
+        _rb.MovePosition(targetPosition);
 
         if (Input.GetButtonDown("Jump") && _isGrounded) {
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode.Impulse);

@@ -10,7 +10,7 @@ public class CameraRotationTrigger : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.name == "Player") {
+        if (other.name == "PlayerObj") {
             _cameraController.Rotate(_direction);
             _direction = !_direction;
             gameObject.SetActive(false);
