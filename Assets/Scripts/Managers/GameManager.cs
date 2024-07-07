@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver() {
         PauseGame();
+        AudioManager.Instance.StopSFX();
         AudioManager.Instance.PlayMusic("gameOverTheme");
         TakePicture("GameOverPanel");
     }
@@ -182,6 +183,7 @@ public class GameManager : MonoBehaviour {
 
     void TakePicture(string panelName) {
         GameObject panel = GameObject.Find("HUD").transform.Find(panelName).gameObject;
+        if (panel == null) return;
         gameObject.SetActive(true);
         _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
         CaptureScreenshot();
