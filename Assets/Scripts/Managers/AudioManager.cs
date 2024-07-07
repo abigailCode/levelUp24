@@ -6,8 +6,8 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] AudioSource _sfxSource;
     [SerializeField] AudioSource _musicSource;
 
-    Dictionary<string, AudioClip> _sfxClips = new();
-    Dictionary<string, AudioClip> _musicClips = new();
+    readonly Dictionary<string, AudioClip> _sfxClips = new();
+    readonly Dictionary<string, AudioClip> _musicClips = new();
 
     void Awake() {
         if (Instance == null) {
@@ -19,15 +19,15 @@ public class AudioManager : MonoBehaviour {
     }
 
     void LoadSFXClips() {
-        _sfxClips["GetGem"] = Resources.Load<AudioClip>("SFX/getGem");
+        _sfxClips["countdown"] = Resources.Load<AudioClip>("SFX/countdownSFX");
     }
 
     void LoadMusicClips() {
-        _musicClips["0"] = Resources.Load<AudioClip>("Music/BackgroundMusic_1");
-        _musicClips["1"] = Resources.Load<AudioClip>("Music/BackgroundMusic_2");
-        _musicClips["2"] = Resources.Load<AudioClip>("Music/BackgroundMusic_3");
-        _musicClips["3"] = Resources.Load<AudioClip>("Music/BackgroundMusic_4");
-        _musicClips["4"] = Resources.Load<AudioClip>("Music/BackgroundMusic_5");
+        _musicClips["mainTheme"] = Resources.Load<AudioClip>("Music/mainTheme");
+        _musicClips["menuTheme"] = Resources.Load<AudioClip>("Music/menuTheme");
+        _musicClips["introTheme"] = Resources.Load<AudioClip>("Music/introTheme");
+        _musicClips["victoryTheme"] = Resources.Load<AudioClip>("Music/victoryTheme");
+        _musicClips["gameOverTheme"] = Resources.Load<AudioClip>("Music/gameOverTheme");
     }
 
     public void PlaySFX(string clipName) {
@@ -43,6 +43,10 @@ public class AudioManager : MonoBehaviour {
             _musicSource.Play();
         } else Debug.LogWarning("El AudioClip " + clipName + " no se encontró en el diccionario de musicClips.");
     }
+
+    public void StopMusic() =>  _musicSource.Stop();
+
+    public void StopSFX() => _sfxSource.Stop();
 
     public void ChangeVolume(float value) {
         _sfxSource.volume = value;

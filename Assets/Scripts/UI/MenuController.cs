@@ -6,15 +6,21 @@ public class MenuController : MonoBehaviour {
     public GameObject credits;
     public GameObject settings;
 
+    void Start() {
+        if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
+    }
+
     public void PerformAction(string action, string scene = "") {
         //if (!GameManager.instance.isActive)
         //    return;
 
         switch (action) {
             case "GoToIntro":
+                AudioManager.Instance.PlayMusic("introTheme");
                 SCManager.Instance.LoadScene("Intro");
                 break;
             case "StartGame":
+                AudioManager.Instance.PlayMusic("mainTheme");
                 SCManager.Instance.LoadScene("Level1");
                 break;
             case "ShowSettings":

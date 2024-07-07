@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
@@ -22,7 +23,8 @@ public class GameManager : MonoBehaviour {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         } else Destroy(gameObject);
-
+        AudioManager.Instance.PlayMusic("mainTheme");
+        StartCoroutine(DestroyWorld());
     }
 
     public void PauseGame() {
@@ -113,11 +115,20 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator DestroyWorld() {
         int count = 20;
+        GameObject countdown = GameObject.Find("CountDown");
+        TMP_Text countdownText = countdown.GetComponent<TMP_Text>();
+        countdown.GetComponent<Animator>().enabled = true;
         StartCoroutine(ChangeSaturationCoroutine(count));
+        AudioManager.Instance.PlaySFX("countdown");
         while (count > 0) {
+            CameraShake.Shake(0.5f, 0.7f);
+            countdownText.text = count.ToString();
             yield return new WaitForSeconds(1f);
             count--;
         }
+        AudioManager.Instance.StopSFX();
+        countdownText.text = "";
+        countdown.GetComponent<Animator>().enabled = false;
         GameOver();
     }
 

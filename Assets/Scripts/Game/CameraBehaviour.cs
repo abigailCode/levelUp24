@@ -5,7 +5,7 @@ public class CameraBehaviour : MonoBehaviour {
     [SerializeField] float _transitionSpeed = 2f;
     int _currentRotationIndex = -1;
 
-    bool _isTransitioning = false;
+    public bool _isTransitioning = false;
     Transform _targetRotationPoint;
 
     void Start() {
