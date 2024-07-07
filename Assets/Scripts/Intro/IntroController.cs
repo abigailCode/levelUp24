@@ -57,7 +57,7 @@ public class IntroController : MonoBehaviour {
         if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
         prevButton.SetActive(index != 0);
         nextButton.SetActive(index != 3);
-        startButton.SetActive(index == 3);
+        //startButton.SetActive(index == 3);
 
         _cameraController.Rotate(_direction);
     }
