@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour {
     bool _isLeader = false;
 
     void Start() {
-        transform.Rotate(-90, 0, 0); // Fix rotation
+        //transform.Rotate(-90, 0, 0); // Fix rotation
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _groupMembers = new List<GameObject> { gameObject };
         _isLeader = true;
