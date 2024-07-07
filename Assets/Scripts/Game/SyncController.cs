@@ -18,7 +18,8 @@ public class SyncController : MonoBehaviour {
     }
 
     void Update() {
-        if (!GameManager.Instance.isActive) { FreezePosition(); return; }
+        if (!GameManager.Instance.isActive) FreezePosition();
+        else UnFreezePositon();
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -132,5 +133,11 @@ public class SyncController : MonoBehaviour {
 
     void FreezePosition() {
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+    }
+
+    void UnFreezePositon() {
+        if (GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezePosition) return;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
 }

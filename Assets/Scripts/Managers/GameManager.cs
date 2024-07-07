@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour {
         GameObject hud = GameObject.Find("HUD");
         if (hud == null) return;
         GameObject pausePanel = hud.transform.Find("PausePanel").gameObject;
-        pausePanel.SetActive(false);
         isActive = true;
         HPBar = GameObject.Find("HPBar");
         if (HPBar == null) return;
-        HPBar.GetComponent<Image>().fillAmount = 0;
+        if (!pausePanel.activeSelf) HPBar.GetComponent<Image>().fillAmount = 0;
+        pausePanel.SetActive(false);
         UpdateCounts();
     }
 
@@ -66,16 +66,18 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GameOver() {
-        PauseGame();
+        StopAllCoroutines();
         AudioManager.Instance.StopSFX();
         AudioManager.Instance.PlayMusic("gameOverTheme");
         TakePicture("GameOverPanel");
+        isActive = false;
     }
 
     public void GameWon() {
-        PauseGame();
+        StopAllCoroutines();
         AudioManager.Instance.PlayMusic("gameWonTheme");
         TakePicture("GameWonPanel");
+        isActive = false;
     }
 
     public void UpdateStatus() {
@@ -202,9 +204,11 @@ public class GameManager : MonoBehaviour {
     }
 
     void TakePicture(string panelName) {
-        GameObject panel = GameObject.Find("HUD").transform.Find(panelName).gameObject;
+        GameObject hud = GameObject.Find("HUD");
+        if (hud == null) return;
+        GameObject panel = hud.transform.Find(panelName).gameObject;
         if (panel == null) return;
-        gameObject.SetActive(true);
+
         _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
         CaptureScreenshot();
         StartCoroutine(ShowPanel(panel));

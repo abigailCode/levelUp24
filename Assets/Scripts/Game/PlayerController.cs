@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (!GameManager.Instance.isActive) { FreezePosition(); return; }
+
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f)) {
             if (hit.collider.CompareTag("Ground")) _isGrounded = true;
         } else _isGrounded = false;
