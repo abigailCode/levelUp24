@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour {
             if (isActive) PauseGame();
             else ResumeGame();
         }
+        if (Input.GetKeyDown(KeyCode.F1)) SceneManager.LoadScene("Level1");
+        if (Input.GetKeyDown(KeyCode.F2)) SceneManager.LoadScene("Level2");
+        if (Input.GetKeyDown(KeyCode.F3)) SceneManager.LoadScene("Level3");
     }
 
     public void PauseGame() {
