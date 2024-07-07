@@ -5,6 +5,7 @@ public class MenuController : MonoBehaviour {
     public MenuController menuController;
     public GameObject credits;
     public GameObject settings;
+    public GameObject menuPanel;
 
     void Start() {
         if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
@@ -25,15 +26,22 @@ public class MenuController : MonoBehaviour {
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");
                 settings.SetActive(true);
+                menuPanel.SetActive(false);
                 break;
             case "HideSettings":
                 settings.SetActive(false);
+                menuPanel.SetActive(true);
+                menuPanel.GetComponent<Animator>().enabled = false;
                 break;
             case "ShowCredits":
                 credits.SetActive(true);
+                menuPanel.SetActive(false);
                 break;
             case "HideCredits":
                 credits.SetActive(false);
+                menuPanel.SetActive(true);
+                menuPanel.GetComponent<Animator>().enabled = false;
+
                 break;
             case "GoToRanking":
                 SCManager.Instance.LoadScene("RankingScene");
