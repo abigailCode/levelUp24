@@ -6068,6 +6068,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5247849320543430221, guid: ec113f5cb7ef57f4485c24c5338f3b40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6225059284102659208, guid: ec113f5cb7ef57f4485c24c5338f3b40, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -6215,7 +6219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61cd9ce6ed6ff74384e4546bc5b5100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: Level3
+  nextLevel: Level4
 --- !u!4 &3359777151715359016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 402461357813984126, guid: 26e5574106dd3a1498045aa89d326f42, type: 3}
@@ -6223,7 +6227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3359777151715359017 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7872693048030105279, guid: 26e5574106dd3a1498045aa89d326f42, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1914405795687354486, guid: 26e5574106dd3a1498045aa89d326f42, type: 3}
   m_PrefabInstance: {fileID: 3359777151715359013}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7550818992177633794
